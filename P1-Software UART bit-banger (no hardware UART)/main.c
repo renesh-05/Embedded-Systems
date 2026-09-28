@@ -1,7 +1,7 @@
 #include<avr/io.h>
 #include "sec.h"
 int main(void)
-{
+{ 
     DDRB |= (1U<<DDB5);
     
     init_ms();
