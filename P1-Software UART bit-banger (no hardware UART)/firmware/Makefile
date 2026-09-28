@@ -6,9 +6,9 @@ CC = avr-gcc
 OBJCOPY = avr-objcopy
 AVRDUDE = avrdude
 
-CFLAGS = -Wall -Os -mmcu=$(MCU) -DF_CPU=(F_CPU) -I./inc
+CFLAGS = -Wall -Os -mmcu=$(MCU) -DF_CPU=$(F_CPU) -I./inc
 
-PORT=/dev/tty/USB0
+PORT=/dev/ttyUSB0
 PROGRAMMER=arduino
 BAUDE=115200
 
@@ -27,7 +27,7 @@ $(TARGET).hex:$(TARGET).elf
 	$(OBJCOPY) -O ihex -R .eeprom $< $@
 
 flash: $(TARGET).hex
-	$(AVRDUDE) -v -p $(MCU) -c $(PROGRAMMER) -P $(PORT) -b $(BAUD) -U flash:w:$<:i
+	$(AVRDUDE) -v -p $(MCU) -c $(PROGRAMMER) -P $(PORT) -b $(BAUDE) -U flash:w:$<:i
 
 clean:
 	rm -f src/*.o $(TARGET).elf $(TARGET).hex

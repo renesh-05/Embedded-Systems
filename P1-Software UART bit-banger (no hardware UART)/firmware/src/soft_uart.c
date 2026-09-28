@@ -6,7 +6,7 @@
 #define F_CPU 16000000UL
 #endif
 
-#define custom_delay(us) __builtin_avr_delay_cycles((uint32t)(us*(F_CPU/1000000.0)))
+#define custom_delay(us) __builtin_avr_delay_cycles((uint32_t)((us)*(F_CPU/1000000.0)))
 
 #define BIT_DELAY 104
 #define HALF_BIT_DELAY 52
@@ -21,7 +21,7 @@ void soft_uart_init(void)
 
 }
 
-void soft_uart_transmit(char data)
+void soft_uart_transmit(uint8_t data)
 {
     PORTD &= ~(1U<<TX_PIN);
     custom_delay(BIT_DELAY);
@@ -44,9 +44,9 @@ void soft_uart_transmit(char data)
     custom_delay(BIT_DELAY);
 }
 
-char soft_uart_receieve(void)
+uint8_t soft_uart_receive(void)
 {
-   char data=0;
+   uint8_t data=0;
 
    while(PIND & (1U<<RX_PIN));
 

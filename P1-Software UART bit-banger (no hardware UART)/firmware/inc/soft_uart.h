@@ -3,11 +3,11 @@
 
 #include<stdint.h>
 
-#define TX PD2
-#define RX PD3
+#define TX_PIN PD2
+#define RX_PIN PD3
 
 void soft_uart_init(void);
-void soft_uart_tranmit(char data);
-char soft_uart_receieve(void);
+void soft_uart_transmit(uint8_t data);
+uint8_t soft_uart_receive(void);
 
 #endif

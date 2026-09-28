@@ -12,7 +12,7 @@ int main(void)
 
     while(1)
     {
-        char recived = soft_uart_receieve();
+        uint8_t recived = soft_uart_receive();
 
         soft_uart_transmit(recived);
     }
